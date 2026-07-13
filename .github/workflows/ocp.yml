@@ -1,0 +1,31 @@
+name: Deploy to OpenShift Sandbox
+
+on:
+  push:
+    branches:
+      - main  # Đổi thành 'master' nếu dự án của bạn đang dùng tên nhánh chính là master
+
+jobs:
+  deploy-to-ocp:
+    runs-on: ubuntu-latest
+    steps:
+    # Bước 1: Lấy code mới nhất từ commit của bạn trên GitHub
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Bước 2: Cài đặt công cụ dòng lệnh 'oc' của OpenShift lên hệ thống GitHub
+    - name: Install OpenShift CLI (oc)
+      uses: redhat-actions/openshift-tools-installer@v1
+      with:
+        oc: "4.14"
+
+    # Bước 3: Đăng nhập vào OpenShift Sandbox bằng Secret đã cấu hình
+    - name: Log in to OpenShift Sandbox
+      run: |
+        oc login --token=${{ secrets.OPENSHIFT_TOKEN }} --server=${{ secrets.OPENSHIFT_SERVER }}
+
+    # Bước 4: Ra lệnh cho OpenShift tự động kéo code mới về từ Git và thực hiện Build/Deploy
+    - name: Start OpenShift Build
+      run: |
+        # CHÚ Ý: Hãy thay thế 'ten-app-cua-ban' bằng tên chính xác bạn tìm thấy ở Bước 2
+        oc start-build ten-app-cua-ban --follow
