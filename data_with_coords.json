@@ -1,0 +1,149 @@
+[
+  {
+    "ten_quan": "Cafe cốt dừa cô Hạnh",
+    "dia_chi": [
+      "130 Lam Sơn, Hải Phòng",
+      "148 Lương Khánh Thiện"
+    ],
+    "thoi_gian_mo": "08:00 - 22:00",
+    "bua_an": "Ăn vặt",
+    "lat": 20.849330989108,
+    "lon": 106.664398026962
+  },
+  {
+    "ten_quan": "Bánh đa cua cô Yến",
+    "dia_chi": "5G Trần Hưng Đạo, Hồng Bàng, Hải Phòng",
+    "thoi_gian_mo": "06:00 - 09:30",
+    "bua_an": "Ăn sáng",
+    "lat": 20.859309980115,
+    "lon": 106.686115035175
+  },
+  {
+    "ten_quan": "Bánh giò Hoàng Văn Thụ",
+    "dia_chi": "39 Trần Quang Khải, Hoàng Văn Thụ, Hồng Bàng, Hải Phòng",
+    "thoi_gian_mo": null,
+    "bua_an": "Ăn vặt",
+    "lat": 20.859840806043,
+    "lon": 106.680819013473
+  },
+  {
+    "ten_quan": "Bún cá Cậu Đoành",
+    "dia_chi": "151 Hồ Sen, Lê Chân",
+    "thoi_gian_mo": "06:00 - 11:00 | 18:00 - 20:00",
+    "bua_an": null,
+    "lat": 20.844456996231,
+    "lon": 106.682070012522
+  },
+  {
+    "ten_quan": "Chè Trang",
+    "dia_chi": "186C Hai Bà Trưng, Lê Chân, Hải Phòng",
+    "thoi_gian_mo": null,
+    "bua_an": null,
+    "lat": 20.852697999614,
+    "lon": 106.677547975759
+  },
+  {
+    "ten_quan": "Bánh đa cua",
+    "dia_chi": "48 Lạch Tray",
+    "thoi_gian_mo": null,
+    "bua_an": "Ăn chính",
+    "lat": 20.849613291607,
+    "lon": 106.688891792059
+  },
+  {
+    "ten_quan": "Trà cúc Diamond",
+    "dia_chi": "33 Minh Khai",
+    "thoi_gian_mo": null,
+    "bua_an": "Ăn vặt",
+    "lat": 20.86027301888,
+    "lon": 106.685276006668
+  },
+  {
+    "ten_quan": "Nem cua bể Nga 92",
+    "dia_chi": "92 Trần Nhật Duật",
+    "thoi_gian_mo": null,
+    "bua_an": "Ăn trưa",
+    "lat": 20.855468009066,
+    "lon": 106.682649034393
+  },
+  {
+    "ten_quan": "Bánh mỳ pate Ông Bà Cụ",
+    "dia_chi": "244 Cát Dài",
+    "thoi_gian_mo": null,
+    "bua_an": "Ăn vặt",
+    "lat": 20.853465,
+    "lon": 106.672163
+  },
+  {
+    "ten_quan": "Bánh đúc tàu",
+    "dia_chi": "186 Cát Dài",
+    "thoi_gian_mo": null,
+    "bua_an": "Ăn vặt",
+    "lat": 20.853465,
+    "lon": 106.672163
+  },
+  {
+    "ten_quan": "Hoa ốc",
+    "dia_chi": "69 Máy Tơ",
+    "thoi_gian_mo": "Từ trưa",
+    "bua_an": "Ăn tối",
+    "lat": 20.864131879464,
+    "lon": 106.695749362323
+  },
+  {
+    "ten_quan": "Trà cúc Cô Lý",
+    "dia_chi": "129 Đinh Tiên Hoàng",
+    "thoi_gian_mo": null,
+    "bua_an": "Ăn vặt",
+    "lat": 20.857439306964,
+    "lon": 106.682356925068
+  },
+  {
+    "ten_quan": "Cafe 1986",
+    "dia_chi": "35 Đinh Tiên Hoàng",
+    "thoi_gian_mo": null,
+    "bua_an": "Ăn vặt",
+    "lat": 20.860841479553,
+    "lon": 106.682388692481
+  },
+  {
+    "ten_quan": "Ốc cô Lời",
+    "dia_chi": "131 Miếu Hai Xã",
+    "thoi_gian_mo": null,
+    "bua_an": "Ăn chính",
+    "lat": 20.843018996922,
+    "lon": 106.678821019213
+  },
+  {
+    "ten_quan": "Bún cá cay",
+    "dia_chi": "66 Lê Lợi, Ngô Quyền",
+    "thoi_gian_mo": "06:00 - 10:00",
+    "bua_an": "Ăn sáng",
+    "lat": 20.8658566,
+    "lon": 106.704599
+  },
+  {
+    "ten_quan": "Bún cá Cô Hường",
+    "dia_chi": "36 Nguyễn Công Trứ, Lê Chân",
+    "thoi_gian_mo": null,
+    "bua_an": "Ăn trưa",
+    "lat": 20.847250014007,
+    "lon": 106.684780971466
+  },
+  {
+    "ten_quan": "Nem chua bà cụ",
+    "dia_chi": "167 Phan Bội Châu, Hồng Bàng",
+    "thoi_gian_mo": "Từ 09:00",
+    "bua_an": "Ăn vặt",
+    "lat": 20.856340020362,
+    "lon": 106.675673027837
+  },
+  {
+    "ten_quan": "Lẩu cua đồng",
+    "dia_chi": "278B Lạch Tray, Ngô Quyền, Hải Phòng",
+    "thoi_gian_mo": "10:30 - 22:00",
+    "bua_an": "Ăn tối",
+    "lat": 20.841647508015,
+    "lon": 106.693365800517
+  }
+]

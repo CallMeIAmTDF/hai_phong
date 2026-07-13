@@ -1,0 +1,324 @@
+:root {
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --bg-color: #f8fafc;
+    --sidebar-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    
+    /* Meal colors */
+    --color-breakfast: #f59e0b; /* Amber */
+    --color-lunch: #10b981; /* Emerald */
+    --color-dinner: #6366f1; /* Indigo */
+    --color-snack: #ec4899; /* Pink */
+    --color-main: #ef4444; /* Red */
+    --color-default: #8b5cf6; /* Violet */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 380px;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.sidebar-header {
+    padding: 24px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.search-container {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.search-box {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 14px 12px 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: all 0.2s ease;
+    background-color: var(--bg-color);
+}
+
+.search-box input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background-color: #fff;
+}
+
+.filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip {
+    padding: 6px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background: transparent;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+
+.chip:hover {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+}
+
+.chip.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.restaurant-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 0;
+}
+
+/* Scrollbar styling */
+.restaurant-list::-webkit-scrollbar {
+    width: 6px;
+}
+.restaurant-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.restaurant-list::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 20px;
+}
+
+.restaurant-item {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    border-left: 4px solid transparent;
+}
+
+.restaurant-item:hover {
+    background-color: var(--bg-color);
+}
+
+.restaurant-item.active {
+    background-color: #eff6ff;
+    border-left-color: var(--primary-color);
+}
+
+.restaurant-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+
+.item-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.item-detail i {
+    margin-top: 3px;
+    width: 14px;
+    text-align: center;
+}
+
+.meal-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    margin-top: 8px;
+}
+
+.no-results {
+    padding: 30px 20px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* Map Area */
+.map-container {
+    flex: 1;
+    position: relative;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* Custom Marker styling */
+.custom-marker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50% 50% 50% 0;
+    background-color: var(--primary-color);
+    color: white;
+    transform: rotate(-45deg);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    border: 2px solid white;
+}
+
+.custom-marker i {
+    transform: rotate(45deg);
+    font-size: 14px;
+}
+
+/* Pulse animation for active marker */
+@keyframes pulse {
+    0% { transform: scale(1) rotate(-45deg); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4); }
+    70% { transform: scale(1.1) rotate(-45deg); box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
+    100% { transform: scale(1) rotate(-45deg); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+}
+
+.custom-marker.active {
+    animation: pulse 1.5s infinite;
+    z-index: 1000 !important;
+}
+
+/* Responsive - Tối ưu cho thiết bị di động */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+    
+    .map-container {
+        height: 55vh;
+        order: 1;
+        z-index: 1;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: 45vh;
+        order: 2;
+        border-right: none;
+        border-top: none;
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+        margin-top: -20px; /* Overlap map to look like a bottom sheet */
+        z-index: 1000;
+        position: relative;
+    }
+    
+    /* Indicator kéo (Drag handle) */
+    .sidebar::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 4px;
+        background-color: #cbd5e1;
+        border-radius: 4px;
+    }
+
+    .sidebar-header {
+        padding: 20px 20px 10px 20px;
+    }
+
+    .sidebar-header h1 {
+        font-size: 1.3rem;
+    }
+
+    .search-container {
+        padding: 10px 20px 15px 20px;
+    }
+
+    /* Vuốt ngang cho danh mục (Filter chips) */
+    .filter-chips {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .filter-chips::-webkit-scrollbar {
+        display: none; /* Chrome, Safari and Opera */
+    }
+
+    .chip {
+        white-space: nowrap;
+        padding: 8px 14px;
+    }
+    
+    .restaurant-item {
+        padding: 14px 20px;
+    }
+}
