@@ -18,6 +18,7 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
+
                 <h1></i> FoodMap Hải Phòng</h1>
                 <p>Khám phá ẩm thực đất Cảng</p>
             </div>
@@ -35,6 +36,14 @@
                     <button class="chip" data-filter="Ăn tối">Ăn tối</button>
                     <button class="chip" data-filter="Ăn vặt">Ăn vặt</button>
                 </div>
+            </div>
+
+            <div class="radius-control" style="padding: 15px 20px; border-bottom: 1px solid var(--border-color);">
+                <label for="radiusSlider" style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 8px; color: var(--text-main); font-weight: 500;">
+                    <span>Bán kính Ga Hải Phòng:</span>
+                    <span id="radiusValue" style="color: var(--primary-color); font-weight: 700;">4 km</span>
+                </label>
+                <input type="range" id="radiusSlider" min="1" max="12" value="4" step="1" style="width: 100%; accent-color: var(--primary-color); cursor: pointer;">
             </div>
 
             <div class="restaurant-list" id="restaurantList">

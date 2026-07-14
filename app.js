@@ -237,5 +237,50 @@ document.querySelectorAll('.chip').forEach(chip => {
     });
 });
 
+// Add Ga Hai Phong Marker and Circle
+const gaHaiPhongCoords = [20.8525, 106.6853];
+
+const gaHaiPhongIcon = L.divIcon({
+    className: 'custom-div-icon',
+    html: `<div class="custom-marker" style="background-color: var(--color-breakfast); border-color: white; z-index: 1000;">
+             <i class="fa-solid fa-train"></i>
+           </div>`,
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
+const gaHaiPhongMarker = L.marker(gaHaiPhongCoords, { icon: gaHaiPhongIcon, zIndexOffset: 1000 })
+    .addTo(map)
+    .bindPopup(`
+        <div style="font-family: 'Inter', sans-serif;">
+            <h3 style="margin: 0 0 5px 0; font-size: 16px;">Ga Hải Phòng</h3>
+            <p style="margin: 0; font-size: 13px; color: #666;">75 Lương Khánh Thiện</p>
+        </div>
+    `);
+
+// 12km radius circle
+let radiusInKm = 4;
+let radiusCircle = L.circle(gaHaiPhongCoords, {
+    color: '#3b82f6',
+    fillColor: '#3b82f6',
+    fillOpacity: 0.1, // Easy to see other parts
+    weight: 2,
+    dashArray: '5, 5', // Dashed border
+    radius: radiusInKm * 1000 // Convert to meters
+}).addTo(map);
+
+// Radius slider logic
+const radiusSlider = document.getElementById('radiusSlider');
+const radiusValueLabel = document.getElementById('radiusValue');
+
+if (radiusSlider && radiusValueLabel) {
+    radiusSlider.addEventListener('input', (e) => {
+        radiusInKm = parseInt(e.target.value, 10);
+        radiusValueLabel.textContent = `${radiusInKm} km`;
+        radiusCircle.setRadius(radiusInKm * 1000);
+    });
+}
+
 // Init
 loadData();
