@@ -6,6 +6,32 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+// Marker Cluster Group
+const markerClusterGroup = L.markerClusterGroup({
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+    zoomToBoundsOnClick: false,
+    maxClusterRadius: 50
+});
+map.addLayer(markerClusterGroup);
+
+markerClusterGroup.on('clusterclick', function (a) {
+    let paddingBottom = 50;
+    if (window.innerWidth <= 768) {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar && !sidebar.classList.contains('collapsed')) {
+            paddingBottom = window.innerHeight * 0.55 + 20;
+        } else {
+            paddingBottom = 80;
+        }
+    }
+
+    a.layer.zoomToBounds({
+        paddingBottomRight: [50, paddingBottom],
+        paddingTopLeft: [50, 50]
+    });
+});
+
 let allData = [];
 let markers = [];
 let currentFilter = 'all';
@@ -98,10 +124,11 @@ function renderList(data) {
 
 // Render markers on the map
 function renderMarkers(data) {
-    // Clear existing markers
-    markers.forEach(m => map.removeLayer(m.marker));
+    // Clear existing markers from cluster
+    markerClusterGroup.clearLayers();
     markers = [];
 
+    const newMarkers = [];
     data.forEach((item, index) => {
         if (!item.lat || !item.lon) return;
 
@@ -121,7 +148,6 @@ function renderMarkers(data) {
         const address = Array.isArray(item.dia_chi) ? item.dia_chi[0] : item.dia_chi;
 
         const marker = L.marker([item.lat, item.lon], { icon: customIcon })
-            .addTo(map)
             .bindPopup(`
                 <div style="font-family: 'Inter', sans-serif;">
                     <h3 style="margin: 0 0 5px 0; font-size: 16px;">${item.ten_quan}</h3>
@@ -141,7 +167,10 @@ function renderMarkers(data) {
         });
 
         markers.push({ marker, index, item });
+        newMarkers.push(marker);
     });
+
+    markerClusterGroup.addLayers(newMarkers);
 }
 
 function highlightMarkerUI(index) {
@@ -153,23 +182,42 @@ function highlightMarkerUI(index) {
 }
 
 function highlightMarker(index, lat, lon) {
-    map.flyTo([lat, lon], 16, { duration: 1.5 });
-    
-    // Open popup
     const markerObj = markers.find(m => m.index === index);
     if (markerObj) {
-        markerObj.marker.openPopup();
+        // Automatically zoom to cluster if needed before opening popup
+        markerClusterGroup.zoomToShowLayer(markerObj.marker, () => {
+            map.flyTo([lat, lon], 16, { duration: 1.5 });
+            markerObj.marker.openPopup();
+            setTimeout(() => {
+                highlightMarkerUI(index);
+            }, 100);
+        });
     }
-    
-    setTimeout(() => {
-        highlightMarkerUI(index);
-    }, 100);
+
+    // Mobile: Collapse sidebar when clicking a restaurant from list to see it on map
+    if (window.innerWidth <= 768) {
+        document.querySelector('.sidebar').classList.add('collapsed');
+    }
 }
 
 function fitMapBounds() {
     if (markers.length === 0) return;
     const group = new L.featureGroup(markers.map(m => m.marker));
-    map.fitBounds(group.getBounds(), { padding: [50, 50] });
+    
+    let paddingBottom = 50;
+    if (window.innerWidth <= 768) {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar && !sidebar.classList.contains('collapsed')) {
+            paddingBottom = window.innerHeight * 0.55 + 20;
+        } else {
+            paddingBottom = 80;
+        }
+    }
+    
+    map.fitBounds(group.getBounds(), {
+        paddingBottomRight: [50, paddingBottom],
+        paddingTopLeft: [50, 50]
+    });
 }
 
 // Search and Filter Logic
@@ -203,18 +251,16 @@ function applyFilters() {
         return allData.findIndex(orig => orig === item);
     }));
     
-    // Toggle marker visibility instead of destroying and recreating
+    // Toggle marker visibility by updating cluster group
+    const visibleMarkers = [];
     markers.forEach(m => {
         if (visibleIndices.has(m.index)) {
-            if (!map.hasLayer(m.marker)) {
-                map.addLayer(m.marker);
-            }
-        } else {
-            if (map.hasLayer(m.marker)) {
-                map.removeLayer(m.marker);
-            }
+            visibleMarkers.push(m.marker);
         }
     });
+    
+    markerClusterGroup.clearLayers();
+    markerClusterGroup.addLayers(visibleMarkers);
 }
 
 // Event Listeners
@@ -284,3 +330,15 @@ if (radiusSlider && radiusValueLabel) {
 
 // Init
 loadData();
+
+// Mobile bottom sheet toggle
+const sidebar = document.querySelector('.sidebar');
+const sidebarHeader = document.querySelector('.sidebar-header');
+
+if (sidebar && sidebarHeader) {
+    sidebarHeader.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            sidebar.classList.toggle('collapsed');
+        }
+    });
+}

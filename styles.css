@@ -252,26 +252,37 @@ body {
 /* Responsive - Tối ưu cho thiết bị di động */
 @media (max-width: 768px) {
     .app-container {
-        flex-direction: column;
+        display: block;
+        position: relative;
     }
     
     .map-container {
-        height: 55vh;
-        order: 1;
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
         z-index: 1;
     }
     
     .sidebar {
         width: 100%;
-        height: 45vh;
-        order: 2;
+        height: 55vh;
+        position: absolute;
+        bottom: 0;
+        left: 0;
         border-right: none;
         border-top: none;
         border-radius: 20px 20px 0 0;
         box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
-        margin-top: -20px; /* Overlap map to look like a bottom sheet */
         z-index: 1000;
-        position: relative;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(0);
+        background-color: var(--sidebar-bg);
+    }
+
+    .sidebar.collapsed {
+        transform: translateY(calc(100% - 65px));
     }
     
     /* Indicator kéo (Drag handle) */
@@ -289,6 +300,8 @@ body {
 
     .sidebar-header {
         padding: 20px 20px 10px 20px;
+        cursor: pointer; /* Indication it can be toggled */
+        user-select: none;
     }
 
     .sidebar-header h1 {
